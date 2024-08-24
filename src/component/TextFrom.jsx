@@ -12,7 +12,30 @@ export default function TextFrom(props) {
 	const handleOnChange = (event) => {
 		setText(event.target.value);
 	};
-	const [text, setText] = useState('');
+
+	const handleCopyText=()=>{
+		navigator.clipboard.writeText(text);
+		return alert("Copy Successfully.")
+	}
+
+	const handleClearText =()=>{
+		let newText=''
+		setText(newText)
+	}
+
+	const handleExtraSpace=()=>{
+		let newText=text.split(/\s+/).join(" ");
+		setText(newText)
+	}
+
+	const handleTitleCase = () => {
+		let newText = text.toLowerCase().split(' ');
+		for (let i = 0; i < newText.length; i++) {
+			newText[i] = newText[i].charAt(0).toUpperCase() + newText[i].slice(1);
+		}
+		setText(newText.join(' '));
+	};
+	const [text, setText] = useState("");
 	return (
 		<>
 			<div className="container">
@@ -30,8 +53,21 @@ export default function TextFrom(props) {
 					Convert to Uppercase
 				</button>
 				<button className="btn btn-primary mx-1" onClick={handleLoclick}>
-					Convert to Uppercase
+					Convert to Lowercase
 				</button>
+				<button className="btn btn-primary mx-1" onClick={handleTitleCase}>
+					Convert to Title Case
+				</button>
+				<button className="btn btn-primary mx-1" onClick={handleCopyText}>
+					Copy
+				</button>
+				<button className="btn btn-primary mx-1" onClick={handleExtraSpace}>
+					Remove Extra Space
+				</button>
+				<button className="btn btn-primary mx-1" onClick={handleClearText}>
+					Clear
+				</button>
+				
 			</div>
 			<div className="container my-3">
 				<h2>Your Text summary</h2>

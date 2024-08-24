@@ -56,7 +56,7 @@ export default function TextFrom(props) {
 					Convert to Lowercase
 				</button>
 				<button className="btn btn-primary mx-1" onClick={handleTitleCase}>
-					Convert to Title Case
+					Convert to Title
 				</button>
 				<button className="btn btn-primary mx-1" onClick={handleCopyText}>
 					Copy

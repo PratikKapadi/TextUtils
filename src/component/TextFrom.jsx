@@ -35,10 +35,12 @@ export default function TextFrom(props) {
 		}
 		setText(newText.join(' '));
 	};
+	console.log(props.mode);
+	
 	const [text, setText] = useState("");
 	return (
 		<>
-			<div className="container">
+			<div className="container" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
 				<h1>{props.heading}</h1>
 				<div className="mb-3">
 					<textarea
@@ -47,6 +49,7 @@ export default function TextFrom(props) {
 						rows="8"
 						onChange={handleOnChange}
 						value={text}
+						style={{ backgroundColor: props.mode === 'dark' ? '#202046' : 'white', color: props.mode === 'dark' ? 'white' : 'black'  }}
 					></textarea>
 				</div>
 				<button className="btn btn-primary mx-1" onClick={handleUpclick}>
@@ -69,14 +72,14 @@ export default function TextFrom(props) {
 				</button>
 				
 			</div>
-			<div className="container my-3">
+			<div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
 				<h2>Your Text summary</h2>
 				<p>
 					{text.split(" ").length} words and {text.length} characters
 				</p>
 				<p>{0.008 * text.split(" ").length} Minutes read</p>
 				<h2>Preview</h2>
-				<p>{text}</p>
+				<p>{text.length>0?text:"Nothing to Preview"}</p>
 			</div>
 		</>
 	);

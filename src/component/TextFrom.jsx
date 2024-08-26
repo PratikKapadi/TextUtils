@@ -4,10 +4,12 @@ export default function TextFrom(props) {
 	const handleUpclick = () => {
 		let newtext = text.toUpperCase();
 		setText(newtext);
+		props.showAlert("Convert to Uppercase!","success")
 	};
 	const handleLoclick = () => {
 		let newtext = text.toLowerCase();
 		setText(newtext);
+		props.showAlert("Convert to Lowercase!","success")
 	};
 	const handleOnChange = (event) => {
 		setText(event.target.value);
@@ -15,17 +17,19 @@ export default function TextFrom(props) {
 
 	const handleCopyText=()=>{
 		navigator.clipboard.writeText(text);
-		return alert("Copy Successfully.")
+		props.showAlert("Copied to Clipboard!","success")
 	}
 
 	const handleClearText =()=>{
 		let newText=''
 		setText(newText)
+		props.showAlert("Text Cleared!","success")
 	}
 
 	const handleExtraSpace=()=>{
 		let newText=text.split(/\s+/).join(" ");
 		setText(newText)
+		props.showAlert("Extra spaces removed!","success")
 	}
 
 	const handleTitleCase = () => {
@@ -34,6 +38,7 @@ export default function TextFrom(props) {
 			newText[i] = newText[i].charAt(0).toUpperCase() + newText[i].slice(1);
 		}
 		setText(newText.join(' '));
+		props.showAlert("Convert to Titel Case!","success")
 	};
 	console.log(props.mode);
 	
@@ -75,9 +80,9 @@ export default function TextFrom(props) {
 			<div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
 				<h2>Your Text summary</h2>
 				<p>
-					{text.split(" ").length} words and {text.length} characters
+					{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} characters
 				</p>
-				<p>{0.008 * text.split(" ").length} Minutes read</p>
+				<p>{0.008 * text.split(/\s+/).filter((element)=>{return element.length!==0}).length} Minutes read</p>
 				<h2>Preview</h2>
 				<p>{text.length>0?text:"Nothing to Preview"}</p>
 			</div>

@@ -57,27 +57,27 @@ export default function TextFrom(props) {
 						style={{ backgroundColor: props.mode === 'dark' ? '#202046' : 'white', color: props.mode === 'dark' ? 'white' : 'black'  }}
 					></textarea>
 				</div>
-				<button className="btn btn-primary mx-1" onClick={handleUpclick}>
+				<button disabled={text.length===0} className="btn btn-primary mx-1" onClick={handleUpclick}>
 					Convert to Uppercase
 				</button>
-				<button className="btn btn-primary mx-1" onClick={handleLoclick}>
+				<button disabled={text.length===0} className="btn btn-primary mx-1" onClick={handleLoclick}>
 					Convert to Lowercase
 				</button>
-				<button className="btn btn-primary mx-1" onClick={handleTitleCase}>
+				<button disabled={text.length===0} className="btn btn-primary mx-1" onClick={handleTitleCase}>
 					Convert to Title Case
 				</button>
-				<button className="btn btn-primary mx-1" onClick={handleCopyText}>
+				<button disabled={text.length===0} className="btn btn-primary mx-1" onClick={handleCopyText}>
 					Copy
 				</button>
-				<button className="btn btn-primary mx-1" onClick={handleExtraSpace}>
+				<button disabled={text.length===0} className="btn btn-primary mx-1" onClick={handleExtraSpace}>
 					Remove Extra Space
 				</button>
-				<button className="btn btn-primary mx-1" onClick={handleClearText}>
+				<button disabled={text.length===0} className="btn btn-primary mx-1" onClick={handleClearText}>
 					Clear
 				</button>
 				
 			</div>
-			<div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
+			<div className="container my-4" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
 				<h2>Your Text summary</h2>
 				<p>
 					{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} characters
